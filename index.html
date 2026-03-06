@@ -9,14 +9,15 @@
   :root {
     --orange: #ee7624;
     --orange-light: #f5a062;
-    --yellow: #F5C518;
     --bg: #1e1e1e;
     --bg-mid: #2a2a2a;
     --bg-light: #333333;
     --text: #f0f0f0;
+    --yellow: #F5C518;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 20px; }
 
   body {
     background: var(--bg);
@@ -28,17 +29,9 @@
       radial-gradient(ellipse at 80% 80%, rgba(238,118,36,0.04) 0%, transparent 50%);
   }
 
-  header {
-    text-align: center;
-    padding: 2.5rem 1rem 1.5rem;
-    border-bottom: 1px solid rgba(238,118,36,0.25);
-  }
+  header { text-align: center; padding: 2.5rem 1rem 1.5rem; border-bottom: 1px solid rgba(238,118,36,0.25); }
 
-  #logo {
-    width: 60px; height: 60px; margin-bottom: 0.5rem;
-    filter: brightness(0) saturate(100%) invert(52%) sepia(73%) saturate(1200%) hue-rotate(1deg) brightness(100%) contrast(97%);
-    animation: glow 3s ease-in-out infinite;
-  }
+  #logo { width: 60px; height: 60px; margin-bottom: 0.5rem; filter: brightness(0) saturate(100%) invert(52%) sepia(73%) saturate(1200%) hue-rotate(1deg) brightness(100%) contrast(97%); animation: glow 3s ease-in-out infinite; }
 
   @keyframes glow {
     0%, 100% { filter: brightness(0) saturate(100%) invert(52%) sepia(73%) saturate(1200%) hue-rotate(1deg) brightness(100%) contrast(97%) drop-shadow(0 0 4px rgba(238,118,36,0.4)); }
@@ -50,13 +43,7 @@
   .last-updated { font-size: 0.72rem; color: rgba(255,255,255,0.25); margin-top: 0.4rem; }
 
   .wall-links { display: flex; justify-content: center; gap: 1rem; margin-top: 0.75rem; flex-wrap: wrap; }
-
-  .wall-link {
-    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-    padding: 0.3rem 0.9rem; border-radius: 20px; transition: background 0.2s, color 0.2s;
-    background: none; cursor: pointer; font-family: 'Lato', sans-serif;
-  }
-
+  .wall-link { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.3rem 0.9rem; border-radius: 20px; transition: background 0.2s, color 0.2s; background: none; cursor: pointer; font-family: 'Lato', sans-serif; }
   .wall-link.mens   { color: #4A90D9; border: 1px solid rgba(74,144,217,0.4); }
   .wall-link.mens:hover   { background: #4A90D9; color: #fff; }
   .wall-link.womens { color: #C2699D; border: 1px solid rgba(194,105,157,0.4); }
@@ -66,12 +53,7 @@
 
   .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 2.2rem; }
 
-  .stat-card {
-    background: var(--bg-mid); border: 1px solid rgba(238,118,36,0.2); border-radius: 10px;
-    padding: 1.2rem 1rem; text-align: center; transition: transform 0.2s, border-color 0.2s;
-    animation: fadeUp 0.5s ease both; cursor: pointer;
-  }
-
+  .stat-card { background: var(--bg-mid); border: 1px solid rgba(238,118,36,0.2); border-radius: 10px; padding: 1.2rem 1rem; text-align: center; transition: transform 0.2s, border-color 0.2s; animation: fadeUp 0.5s ease both; cursor: pointer; }
   .stat-card:hover { transform: translateY(-3px); border-color: rgba(238,118,36,0.5); }
   .stat-card.active-filter { border-color: var(--orange); box-shadow: 0 0 0 1px var(--orange); }
   .stat-card:nth-child(1) { animation-delay: 0.05s; }
@@ -91,6 +73,8 @@
 
   .section { margin-bottom: 2rem; animation: fadeUp 0.6s ease 0.25s both; }
 
+  .section-title { font-family: 'Cabin', sans-serif; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); padding-bottom: 0.5rem; border-bottom: 1px solid rgba(238,118,36,0.2); display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
+
   .collapsible-header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(238,118,36,0.2); }
   .collapsible-title { font-family: 'Cabin', sans-serif; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); display: flex; align-items: center; gap: 0.5rem; }
   .chevron { color: var(--orange); font-size: 0.9rem; transition: transform 0.3s ease; }
@@ -99,7 +83,6 @@
   .collapsible-body.open { max-height: 9999px; padding-top: 1rem; }
 
   .filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
-
   .filter-pill { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; padding: 0.3rem 0.9rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.15); background: transparent; color: rgba(255,255,255,0.45); cursor: pointer; transition: all 0.2s; }
   .filter-pill:hover { border-color: var(--orange); color: var(--orange); }
   .filter-pill.pf-All.active-filter      { background: var(--orange); border-color: var(--orange); color: #fff; }
@@ -127,8 +110,6 @@
   .badge.Praise   { background: rgba(245,197,24,0.15);  color: #F5C518; }
   .badge.unknown  { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.4); }
 
-  .section-title { font-family: 'Cabin', sans-serif; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); padding-bottom: 0.5rem; border-bottom: 1px solid rgba(238,118,36,0.2); display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
-
   .timeline-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 1rem; }
   .timeline-card { background: var(--bg-mid); border: 1px solid rgba(238,118,36,0.2); border-radius: 10px; padding: 1.1rem 1rem; text-align: center; transition: transform 0.2s, border-color 0.2s; }
   .timeline-card:hover { transform: translateY(-3px); border-color: var(--orange); }
@@ -149,10 +130,11 @@
   <img id="logo" src="https://media.twocitieschurch.net/wp-content/uploads/2024/03/05113835/tcc-arrows.svg" alt="Two Cities Church">
   <h1>Prayer Wall</h1>
   <p class="subtitle">Jones Community Group</p>
-  <p class="last-updated" id="lastUpdated"></p>
+  <p class="last-updated" id="lastUpdated">Loading...</p>
+  <br>
   <div class="wall-links">
-    <button class="wall-link mens"   onclick="window.location.href='mens.html'">Men's Prayer Wall</button>
-    <button class="wall-link womens" onclick="window.location.href='womens.html'">Women's Prayer Wall</button>
+    <button class="wall-link womens" onclick="window.location.href='womens.html'">Women's Wall</button>
+    <button class="wall-link mens"   onclick="window.location.href='mens.html'">Men's Wall</button>
   </div>
 </header>
 
@@ -163,28 +145,27 @@
 <script>
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbylKOWK9hvExqfey5JCTuKaUwP51_XuAZKeLQY1eS0/exec";
 
-  function jsonp(url, callbackName, onSuccess, onError) {
-  window[callbackName] = function(data) {
-    delete window[callbackName];
-    const el = document.getElementById('jsonp-' + callbackName);
-    if (el) el.remove();
-    onSuccess(data);
-  };
-  const script = document.createElement('script');
-  script.id = 'jsonp-' + callbackName;
-  script.src = url + "&callback=" + callbackName;
-  script.onerror = function() {
-    delete window[callbackName];
-    script.remove();
-    if (onError) onError();
-  };
-  document.body.appendChild(script);
-}
-
-  
   let allRequests = [];
   let activeFilter = "All";
   const knownStatuses = ["Active", "Answered", "Praise"];
+
+  function jsonp(url, callbackName, onSuccess, onError) {
+    window[callbackName] = function(data) {
+      delete window[callbackName];
+      const el = document.getElementById('jsonp-' + callbackName);
+      if (el) el.remove();
+      onSuccess(data);
+    };
+    const script = document.createElement('script');
+    script.id = 'jsonp-' + callbackName;
+    script.src = url + "&callback=" + callbackName;
+    script.onerror = function() {
+      delete window[callbackName];
+      script.remove();
+      if (onError) onError();
+    };
+    document.body.appendChild(script);
+  }
 
   function badgeClass(status) {
     if (!status) return "unknown";
@@ -222,7 +203,9 @@
     const listEl  = document.getElementById('all-requests-list');
     if (!countEl || !listEl) return;
     countEl.textContent = filtered.length + " request" + (filtered.length !== 1 ? "s" : "");
-    listEl.innerHTML = filtered.length ? filtered.map(requestCard).join('') : '<p class="empty">No requests match this filter.</p>';
+    listEl.innerHTML = filtered.length
+      ? filtered.map(requestCard).join('')
+      : '<p class="empty">No requests match this filter.</p>';
   }
 
   function toggleCollapsible() {
@@ -246,11 +229,11 @@
 
     document.getElementById('content').innerHTML = `
       <div class="stats-grid">
-        <div class="stat-card s-total" data-filter="All" onclick="applyFilter('All')">
+        <div class="stat-card s-total"    data-filter="All"      onclick="applyFilter('All')">
           <div class="stat-number">${d.total}</div>
           <div class="stat-label">Total Requests</div>
         </div>
-        <div class="stat-card s-active" data-filter="Active" onclick="applyFilter('Active')">
+        <div class="stat-card s-active"   data-filter="Active"   onclick="applyFilter('Active')">
           <div class="stat-number">${d.active}</div>
           <div class="stat-label">Active</div>
         </div>
@@ -258,7 +241,7 @@
           <div class="stat-number">${d.answered}</div>
           <div class="stat-label">Answered</div>
         </div>
-        <div class="stat-card s-praise" data-filter="Praise" onclick="applyFilter('Praise')">
+        <div class="stat-card s-praise"   data-filter="Praise"   onclick="applyFilter('Praise')">
           <div class="stat-number">${d.praise}</div>
           <div class="stat-label">Praise</div>
         </div>
@@ -266,7 +249,7 @@
 
       <div class="section">
         <div class="collapsible-header" onclick="toggleCollapsible()">
-          <div class="collapsible-title">📋 All Requests (${d.total})</div>
+          <div class="collapsible-title">🙏 All Requests (${d.total})</div>
           <span class="chevron open" id="chevron">▼</span>
         </div>
         <div class="collapsible-body open" id="collapsible-body">
@@ -289,21 +272,20 @@
     applyFilter(activeFilter);
   }
 
-  function handleData(d) {
-  render(d);
-}
+  function load() {
+    jsonp(
+      SCRIPT_URL + "?action=data",
+      "_mainDataCb",
+      render,
+      function() {
+        document.getElementById('content').innerHTML =
+          '<p class="empty">Could not load data. Please try again.</p>';
+      }
+    );
+  }
 
-function load() {
-  jsonp(
-    SCRIPT_URL + "?action=data",
-    "_mainDataCb",
-    render,
-    function() {
-      document.getElementById('content').innerHTML =
-        '<p class="empty">Could not load data. Please try again.</p>';
-    }
-  );
-}
+  load();
+  setInterval(load, 30000);
 </script>
 </body>
 </html>
