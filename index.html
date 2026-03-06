@@ -289,20 +289,18 @@
     applyFilter(activeFilter);
   }
 
-  function handleData(d) {
-  render(d);
-}
+//   function handleData(d) {
+//   render(d);
+// }
 
 function load() {
-  jsonp(
-    SCRIPT_URL + "?action=data",
-    "_mainDataCb",
-    render,
-    function() {
+  fetch("https://corsproxy.io/?" + encodeURIComponent(SCRIPT_URL + "?action=data"))
+    .then(r => r.json())
+    .then(render)
+    .catch(() => {
       document.getElementById('content').innerHTML =
         '<p class="empty">Could not load data. Please try again.</p>';
-    }
-  );
+    });
 }
 
 load();
