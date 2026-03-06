@@ -28,95 +28,19 @@
       radial-gradient(ellipse at 80% 80%, rgba(74,144,217,0.04) 0%, transparent 50%);
   }
 
-  .gate {
-    position: fixed;
-    inset: 0;
-    background: var(--bg);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    z-index: 999;
-    padding: 2rem;
-  }
-
+  .gate { position: fixed; inset: 0; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; z-index: 999; padding: 2rem; }
   .gate.hidden { display: none; }
-
-  .gate-logo {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 0.5rem;
-    filter: brightness(0) saturate(100%) invert(45%) sepia(80%) saturate(500%) hue-rotate(180deg) brightness(110%);
-  }
-
-  .gate h2 {
-    font-family: 'Cabin', sans-serif;
-    font-size: 1.4rem;
-    color: var(--accent);
-    letter-spacing: 0.08em;
-  }
-
-  .gate p {
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.4);
-    text-align: center;
-  }
-
-  .gate input {
-    width: 100%;
-    max-width: 280px;
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    border: 1px solid rgba(74,144,217,0.4);
-    background: var(--bg-mid);
-    color: var(--text);
-    font-size: 1rem;
-    text-align: center;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-
+  .gate-logo { width: 60px; height: 60px; margin-bottom: 0.5rem; filter: brightness(0) saturate(100%) invert(45%) sepia(80%) saturate(500%) hue-rotate(180deg) brightness(110%); }
+  .gate h2 { font-family: 'Cabin', sans-serif; font-size: 1.4rem; color: var(--accent); letter-spacing: 0.08em; }
+  .gate p  { font-size: 0.85rem; color: rgba(255,255,255,0.4); text-align: center; }
+  .gate input { width: 100%; max-width: 280px; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid rgba(74,144,217,0.4); background: var(--bg-mid); color: var(--text); font-size: 1rem; text-align: center; outline: none; transition: border-color 0.2s; }
   .gate input:focus { border-color: var(--accent); }
-
-  .gate button {
-    width: 100%;
-    max-width: 280px;
-    padding: 0.75rem;
-    border-radius: 8px;
-    border: none;
-    background: var(--accent);
-    color: #fff;
-    font-family: 'Cabin', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
-
+  .gate button { width: 100%; max-width: 280px; padding: 0.75rem; border-radius: 8px; border: none; background: var(--accent); color: #fff; font-family: 'Cabin', sans-serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: opacity 0.2s; }
   .gate button:hover { opacity: 0.85; }
+  .gate-error { font-size: 0.8rem; color: #e05555; min-height: 1rem; }
 
-  .gate-error {
-    font-size: 0.8rem;
-    color: #e05555;
-    min-height: 1rem;
-  }
-
-  header {
-    text-align: center;
-    padding: 2.5rem 1rem 1.5rem;
-    border-bottom: 1px solid rgba(74,144,217,0.25);
-  }
-
-  #logo {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 0.5rem;
-    filter: brightness(0) saturate(100%) invert(45%) sepia(80%) saturate(500%) hue-rotate(180deg) brightness(110%);
-    animation: glow 3s ease-in-out infinite;
-  }
+  header { text-align: center; padding: 2.5rem 1rem 1.5rem; border-bottom: 1px solid rgba(74,144,217,0.25); }
+  #logo { width: 60px; height: 60px; margin-bottom: 0.5rem; filter: brightness(0) saturate(100%) invert(45%) sepia(80%) saturate(500%) hue-rotate(180deg) brightness(110%); animation: glow 3s ease-in-out infinite; }
 
   @keyframes glow {
     0%, 100% { filter: brightness(0) saturate(100%) invert(45%) sepia(80%) saturate(500%) hue-rotate(180deg) brightness(110%) drop-shadow(0 0 4px rgba(74,144,217,0.4)); }
@@ -128,20 +52,9 @@
   .last-updated { font-size: 0.72rem; color: rgba(255,255,255,0.25); margin-top: 0.4rem; }
 
   main { max-width: 960px; margin: 0 auto; padding: 2rem 1.2rem 3rem; }
-
   .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 2.2rem; }
 
-  .stat-card {
-    background: var(--bg-mid);
-    border: 1px solid rgba(74,144,217,0.2);
-    border-radius: 10px;
-    padding: 1.2rem 1rem;
-    text-align: center;
-    transition: transform 0.2s, border-color 0.2s;
-    animation: fadeUp 0.5s ease both;
-    cursor: pointer;
-  }
-
+  .stat-card { background: var(--bg-mid); border: 1px solid rgba(74,144,217,0.2); border-radius: 10px; padding: 1.2rem 1rem; text-align: center; transition: transform 0.2s, border-color 0.2s; animation: fadeUp 0.5s ease both; cursor: pointer; }
   .stat-card:hover { transform: translateY(-3px); border-color: rgba(74,144,217,0.5); }
   .stat-card.active-filter { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
   .stat-card:nth-child(1) { animation-delay: 0.05s; }
@@ -153,16 +66,13 @@
 
   .stat-number { font-family: 'Cabin', sans-serif; font-size: 2.4rem; font-weight: 700; line-height: 1; margin-bottom: 0.4rem; }
   .stat-label  { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
-
   .stat-card.s-active   .stat-number { color: var(--accent); }
   .stat-card.s-answered .stat-number { color: #ee7624; }
   .stat-card.s-praise   .stat-number { color: #F5C518; }
   .stat-card.s-total    .stat-number { color: var(--text); }
 
   .section { margin-bottom: 2rem; animation: fadeUp 0.6s ease 0.25s both; }
-
   .section-title { font-family: 'Cabin', sans-serif; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); padding-bottom: 0.5rem; border-bottom: 1px solid rgba(74,144,217,0.2); display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
-
   .collapsible-header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(74,144,217,0.2); }
   .collapsible-title { font-family: 'Cabin', sans-serif; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 0.5rem; }
   .chevron { color: var(--accent); font-size: 0.9rem; transition: transform 0.3s ease; }
@@ -171,7 +81,6 @@
   .collapsible-body.open { max-height: 9999px; padding-top: 1rem; }
 
   .filter-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
-
   .filter-pill { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; padding: 0.3rem 0.9rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.15); background: transparent; color: rgba(255,255,255,0.45); cursor: pointer; transition: all 0.2s; }
   .filter-pill:hover                     { border-color: var(--accent); color: var(--accent); }
   .filter-pill.pf-All.active-filter      { background: var(--accent); border-color: var(--accent); color: #fff; }
@@ -247,13 +156,6 @@
   let unlocked = false;
   const knownStatuses = ["Active", "Answered", "Praise"];
 
-  function badgeClass(status) {
-    if (!status) return "unknown";
-    const match = knownStatuses.find(s => s.toLowerCase() === status.trim().toLowerCase());
-    return match || "unknown";
-  }
-
-  // ── JSONP helper ──────────────────────────────────────────────
   function jsonp(url, callbackName, onSuccess, onError) {
     window[callbackName] = function(data) {
       delete window[callbackName];
@@ -272,7 +174,12 @@
     document.body.appendChild(script);
   }
 
-  // ── Password ──────────────────────────────────────────────────
+  function badgeClass(status) {
+    if (!status) return "unknown";
+    const match = knownStatuses.find(s => s.toLowerCase() === status.trim().toLowerCase());
+    return match || "unknown";
+  }
+
   function submitPassword() {
     const input   = document.getElementById('passwordInput').value.trim();
     const errorEl = document.getElementById('gateError');
@@ -299,7 +206,6 @@
     );
   }
 
-  // ── Request card ──────────────────────────────────────────────
   function requestCard(r) {
     const liveStatus = (r.status || "").trim();
     const cls = badgeClass(liveStatus);
@@ -319,7 +225,6 @@
       </div>`;
   }
 
-  // ── Filter ────────────────────────────────────────────────────
   function applyFilter(filter) {
     activeFilter = filter;
     document.querySelectorAll('.stat-card').forEach(c =>
@@ -341,7 +246,6 @@
     document.getElementById('chevron').classList.toggle('open');
   }
 
-  // ── Render ────────────────────────────────────────────────────
   function render(d) {
     const now = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
     document.getElementById('lastUpdated').textContent = 'Last updated: ' + now;
@@ -401,7 +305,6 @@
     applyFilter(activeFilter);
   }
 
-  // ── Load data ─────────────────────────────────────────────────
   function load() {
     if (!unlocked) return;
     jsonp(
@@ -415,7 +318,6 @@
     );
   }
 
-  // ── Event listeners ───────────────────────────────────────────
   document.getElementById('enterBtn').addEventListener('click', submitPassword);
   document.getElementById('passwordInput').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') submitPassword();
