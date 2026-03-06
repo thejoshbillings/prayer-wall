@@ -269,15 +269,19 @@
     applyFilter(activeFilter);
   }
 
-  function load() {
-    fetch(SCRIPT_URL + "?action=data")
-      .then(r => r.json())
-      .then(render)
-      .catch(err => {
-        document.getElementById('content').innerHTML =
-          '<p class="empty">Could not load data. Please try again.</p>';
-      });
-  }
+  function handleData(d) {
+  render(d);
+}
+
+function load() {
+  const script = document.createElement('script');
+  script.src = SCRIPT_URL + "?action=data&callback=handleData";
+  script.onerror = () => {
+    document.getElementById('content').innerHTML =
+      '<p class="empty">Could not load data. Please try again.</p>';
+  };
+  document.body.appendChild(script);
+
 
   load();
   setInterval(load, 30000);
