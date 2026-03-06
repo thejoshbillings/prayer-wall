@@ -162,6 +162,26 @@
 
 <script>
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbylKOWK9hvExqfey5JCTuKaUwP51_XuAZKeLQY1eS0/exec";
+
+  function jsonp(url, callbackName, onSuccess, onError) {
+  window[callbackName] = function(data) {
+    delete window[callbackName];
+    const el = document.getElementById('jsonp-' + callbackName);
+    if (el) el.remove();
+    onSuccess(data);
+  };
+  const script = document.createElement('script');
+  script.id = 'jsonp-' + callbackName;
+  script.src = url + "&callback=" + callbackName;
+  script.onerror = function() {
+    delete window[callbackName];
+    script.remove();
+    if (onError) onError();
+  };
+  document.body.appendChild(script);
+}
+
+  
   let allRequests = [];
   let activeFilter = "All";
   const knownStatuses = ["Active", "Answered", "Praise"];
@@ -274,17 +294,16 @@
 }
 
 function load() {
-  const script = document.createElement('script');
-  script.src = SCRIPT_URL + "?action=data&callback=handleData";
-  script.onerror = () => {
-    document.getElementById('content').innerHTML =
-      '<p class="empty">Could not load data. Please try again.</p>';
-  };
-  document.body.appendChild(script);
-
-
-  load();
-  setInterval(load, 30000);
+  jsonp(
+    SCRIPT_URL + "?action=data",
+    "_mainDataCb",
+    render,
+    function() {
+      document.getElementById('content').innerHTML =
+        '<p class="empty">Could not load data. Please try again.</p>';
+    }
+  );
+}
 </script>
 </body>
 </html>
