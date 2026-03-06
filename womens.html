@@ -30,21 +30,16 @@
 
   .gate { position: fixed; inset: 0; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; z-index: 999; padding: 2rem; }
   .gate.hidden { display: none; }
-
   .gate-logo { width: 60px; height: 60px; margin-bottom: 0.5rem; filter: brightness(0) saturate(100%) invert(45%) sepia(40%) saturate(800%) hue-rotate(280deg) brightness(110%); }
-
   .gate h2 { font-family: 'Cabin', sans-serif; font-size: 1.4rem; color: var(--accent); letter-spacing: 0.08em; }
   .gate p  { font-size: 0.85rem; color: rgba(255,255,255,0.4); text-align: center; }
-
   .gate input { width: 100%; max-width: 280px; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid rgba(194,105,157,0.4); background: var(--bg-mid); color: var(--text); font-size: 1rem; text-align: center; outline: none; transition: border-color 0.2s; }
   .gate input:focus { border-color: var(--accent); }
-
   .gate button { width: 100%; max-width: 280px; padding: 0.75rem; border-radius: 8px; border: none; background: var(--accent); color: #fff; font-family: 'Cabin', sans-serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: opacity 0.2s; }
   .gate button:hover { opacity: 0.85; }
   .gate-error { font-size: 0.8rem; color: #e05555; min-height: 1rem; }
 
   header { text-align: center; padding: 2.5rem 1rem 1.5rem; border-bottom: 1px solid rgba(194,105,157,0.25); }
-
   #logo { width: 60px; height: 60px; margin-bottom: 0.5rem; filter: brightness(0) saturate(100%) invert(45%) sepia(40%) saturate(800%) hue-rotate(280deg) brightness(110%); animation: glow 3s ease-in-out infinite; }
 
   @keyframes glow {
@@ -57,9 +52,7 @@
   .last-updated { font-size: 0.72rem; color: rgba(255,255,255,0.25); margin-top: 0.4rem; }
 
   main { max-width: 960px; margin: 0 auto; padding: 2rem 1.2rem 3rem; }
-
   .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 2.2rem; }
-
   .stat-card { background: var(--bg-mid); border: 1px solid rgba(194,105,157,0.2); border-radius: 10px; padding: 1.2rem 1rem; text-align: center; transition: transform 0.2s, border-color 0.2s; animation: fadeUp 0.5s ease both; cursor: pointer; }
   .stat-card:hover { transform: translateY(-3px); border-color: rgba(194,105,157,0.5); }
   .stat-card.active-filter { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
@@ -72,7 +65,6 @@
 
   .stat-number { font-family: 'Cabin', sans-serif; font-size: 2.4rem; font-weight: 700; line-height: 1; margin-bottom: 0.4rem; }
   .stat-label  { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
-
   .stat-card.s-active   .stat-number { color: var(--accent); }
   .stat-card.s-answered .stat-number { color: #ee7624; }
   .stat-card.s-praise   .stat-number { color: #F5C518; }
@@ -80,7 +72,6 @@
 
   .section { margin-bottom: 2rem; animation: fadeUp 0.6s ease 0.25s both; }
   .section-title { font-family: 'Cabin', sans-serif; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); padding-bottom: 0.5rem; border-bottom: 1px solid rgba(194,105,157,0.2); display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
-
   .collapsible-header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(194,105,157,0.2); }
   .collapsible-title { font-family: 'Cabin', sans-serif; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 0.5rem; }
   .chevron { color: var(--accent); font-size: 0.9rem; transition: transform 0.3s ease; }
@@ -158,15 +149,28 @@
 
 <script>
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbylKOWK9hvExqfey5JCTuKaUwP51_XuAZKeLQY1eS0/exec";
-  const PROXY      = "https://corsproxy.io/?";
 
   let allRequests = [];
   let activeFilter = "All";
   let unlocked = false;
   const knownStatuses = ["Active", "Answered", "Praise"];
 
-  function proxyFetch(url) {
-    return fetch(PROXY + encodeURIComponent(url)).then(r => r.json());
+  function jsonp(url, callbackName, onSuccess, onError) {
+    window[callbackName] = function(data) {
+      delete window[callbackName];
+      const el = document.getElementById('jsonp-' + callbackName);
+      if (el) el.remove();
+      onSuccess(data);
+    };
+    const script = document.createElement('script');
+    script.id = 'jsonp-' + callbackName;
+    script.src = url + "&callback=" + callbackName;
+    script.onerror = function() {
+      delete window[callbackName];
+      script.remove();
+      if (onError) onError();
+    };
+    document.body.appendChild(script);
   }
 
   function badgeClass(status) {
@@ -181,8 +185,10 @@
     if (!input) { errorEl.textContent = "Please enter a password."; return; }
     errorEl.textContent = "Checking...";
 
-    proxyFetch(SCRIPT_URL + "?action=checkpassword&wall=womens&password=" + encodeURIComponent(input))
-      .then(data => {
+    jsonp(
+      SCRIPT_URL + "?action=checkpassword&wall=womens&password=" + encodeURIComponent(input),
+      "_womensPasswordCb",
+      function(data) {
         if (data.valid) {
           document.getElementById('gate').classList.add('hidden');
           unlocked = true;
@@ -192,8 +198,11 @@
           document.getElementById('passwordInput').value = "";
           document.getElementById('passwordInput').focus();
         }
-      })
-      .catch(() => { errorEl.textContent = "Error checking password. Try again."; });
+      },
+      function() {
+        errorEl.textContent = "Error checking password. Try again.";
+      }
+    );
   }
 
   function requestCard(r) {
@@ -297,12 +306,15 @@
 
   function load() {
     if (!unlocked) return;
-    proxyFetch(SCRIPT_URL + "?action=data&wall=womens")
-      .then(render)
-      .catch(() => {
+    jsonp(
+      SCRIPT_URL + "?action=data&wall=womens",
+      "_womensDataCb",
+      render,
+      function() {
         document.getElementById('content').innerHTML =
           '<p class="empty">Could not load data. Please try again.</p>';
-      });
+      }
+    );
   }
 
   document.getElementById('enterBtn').addEventListener('click', submitPassword);
